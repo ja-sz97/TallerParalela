@@ -8,4 +8,6 @@
 #include <iostream>
 
 void saludo();
+void leerArchivo();
+
 #endif //APP_FUNCIONES_H
