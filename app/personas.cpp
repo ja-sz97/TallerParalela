@@ -6,6 +6,18 @@
 #include <string>
 #include "personas.h"
 
+string normalizar( string palabra){
+    char CaracterIndeseado[] = {'"'};
+    string palabranueva;
+    int aux = palabra.length();
+    for (int i = 0; i < aux ; i++){
+            if (palabra[i] != CaracterIndeseado[0]){
+                palabranueva += palabra[i];
+            }
+    }
+    return palabranueva;
+}
+
 void leerArchivo(Personas Listado[]){
     ifstream archivo;
     string linea,linea2;
@@ -14,7 +26,7 @@ void leerArchivo(Personas Listado[]){
 
     archivo.open("estudiantes.csv", ios::in );
 
-    try{
+    
 
         if(archivo.fail()){
             cout<<"error"<<endl;
@@ -31,8 +43,6 @@ void leerArchivo(Personas Listado[]){
             while(getline(archivo,linea)){
                 stringstream stream(linea);
                 
-                cout<<"aah"<<endl;
-
                 getline(stream,id,';');
                 getline(stream,idEstudiante,';');
                 getline(stream,promLenguaje,';');
@@ -45,13 +55,20 @@ void leerArchivo(Personas Listado[]){
                 getline(stream,promEdFisica,';');
                 
                 
-            
-                cout<<id<<endl;
-                cout<<idEstudiante<<endl;
-                cout<<promLenguaje<<endl;
+                id = normalizar(id);
+                idEstudiante = normalizar(idEstudiante);
+                promLenguaje = normalizar(promLenguaje);
+                promIngles = normalizar(promIngles);
+                promMatematicas = normalizar(promMatematicas);
+                promCiencias = normalizar(promCiencias);
+                promHistoria = normalizar(promHistoria);
+                promTecnologia = normalizar(promTecnologia);
+                promArte = normalizar(promArte);
+                promEdFisica = normalizar(promEdFisica);
 
                 int _id;
                 float _promLenguaje, _promIngles, _promMatematicas, _promCiencias, _promHistoria, _promTecnologia, _promArte, _promEdFisica;
+
 
                 _id = atoi(id.c_str());
                 _promLenguaje = stof(promLenguaje);
@@ -63,26 +80,22 @@ void leerArchivo(Personas Listado[]){
                 _promArte = stof(promArte);
                 _promEdFisica = stof(promEdFisica);
 
-                
-
                 Listado[i].setAtributos(_id,idEstudiante,_promLenguaje,_promIngles,_promMatematicas,_promCiencias,_promHistoria,_promTecnologia,_promArte,_promEdFisica);
 
+
                 i++;
+
             } 
         }
         archivo.close();
     }
-    catch(const std::exception& e){
-        std::cerr << e.what() << '\n';
-    }
-}
+
 
 void Personas::verDatos(){
     cout<<"id: "<<id<<endl;
     cout<<"idEstudiante: "<<idEstudiante<<endl;
     cout<<"Promedio Lenguaje: "<<promLenguaje<<endl;
 }
-
 
 
 
