@@ -61,10 +61,11 @@ class Personas{
 
 typedef Personas Listado[15000];
 
-typedef int MejoresPromedios[300];
+typedef int MejoresPromedios[400];
 
 void leerArchivo(Personas Listado[]);
 void MejorPromedio(Personas Listado[], MejoresPromedios);
 void MejorArtistico(Personas Listado[], MejoresPromedios);
-
+void MejorHumanista(Personas Listado[], MejoresPromedios);
+void MejorTecnicos(Personas Listado[],MejoresPromedios);
 #endif //PERSONAS_H_INCLUDED

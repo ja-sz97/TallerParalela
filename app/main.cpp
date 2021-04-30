@@ -10,7 +10,7 @@ using namespace std;
 int main() {
     
     //declaracion de variables globales
-    Personas Listado[15002];
+    Personas Listado[15001];
     int MejoresPromedios[300];
 
 
@@ -20,6 +20,8 @@ int main() {
     
     MejorPromedio(Listado, MejoresPromedios);
     MejorArtistico(Listado, MejoresPromedios);
+    MejorHumanista(Listado, MejoresPromedios);
+    MejorTecnicos(Listado, MejoresPromedios);
 
 
     return 0;
