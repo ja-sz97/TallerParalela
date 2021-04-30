@@ -11,7 +11,7 @@ int main() {
     
     //declaracion de variables globales
     Personas Listado[15001];
-    int MejoresPromedios[300];
+    int MejoresPromedios[400];
 
 
     leerArchivo(Listado);
@@ -19,6 +19,7 @@ int main() {
     //Listado[1].verDatos();
     
     MejorPromedio(Listado, MejoresPromedios);
+    //insertarMejorPromedio(Listado, MejoresPromedios);
     MejorArtistico(Listado, MejoresPromedios);
     MejorHumanista(Listado, MejoresPromedios);
     MejorTecnicos(Listado, MejoresPromedios);

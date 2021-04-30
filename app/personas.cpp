@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <string>
 #include "personas.h"
+#include <unistd.h>
 
 string normalizar( string palabra){
     char CaracterIndeseado[] = {'"'};
@@ -88,7 +89,7 @@ void leerArchivo(Personas Listado[]){
             } 
         }
         archivo.close();
-    }
+}
 
 
 void Personas::verDatos(){
@@ -132,10 +133,79 @@ void MejorPromedio(Personas Listado[], int MejoresPromedios[]){
     for(int i=0;i<100;i++){
         cout<<"mejores Estudiantes "<<i<<" "<<MejoresPromedios[i]<<endl;
     }
-    
+    insertarMejorPromedio(Listado, mejores, "mejoresPromedios");
 }
+/*
+void escribir(int valor1, string valor2, float valor3){
 
+    archivo[2].open("al/mejoresPromedios.csv", ios::out | ios::app);
 
+    archivo[2]<<comilla << valor1 << comilla << ";" << comilla <<valor2<<comilla<<";"<<comilla<<valor3<<comilla;
+    archivo[2].close();  
+}
+*/
+void insertarMejorPromedio(Personas Listado[],float MejoresPromedios[][2], string nombre){
+
+    ofstream archivo;
+    const char comilla = '"';
+    for (int i=0;i<15001;i++){
+        for (int j=0; j<100;j++){
+        if (MejoresPromedios[j][1]==Listado[i].getId()){
+            //escribir(Listado[i].getId(),Listado[i].getIdEstudiante(),Listado[i].getProMatematicas());
+            archivo.open("al/"+nombre+".csv",ios::out | ios::app);
+            archivo<<comilla << Listado[i].getId() << comilla << ";" << comilla <<Listado[i].getIdEstudiante()<<comilla<<";"<<comilla<<MejoresPromedios[j][2]<<comilla<<endl;
+            archivo.close();
+        }
+        }
+    }
+}
+/*
+void insertarMejorPromedio2(Personas Listado[],float MejoresPromedios[][2]){
+
+    ofstream archivo;
+    const char comilla = '"';
+    for (int i=0;i<15001;i++){
+        for (int j=0; j<100;j++){
+        if (MejoresPromedios[j][1]==Listado[i].getId()){
+            //escribir(Listado[i].getId(),Listado[i].getIdEstudiante(),Listado[i].getProMatematicas());
+            archivo.open("al/mejoresArtisticos.csv",ios::out | ios::app);
+            archivo<<comilla << Listado[i].getId() << comilla << ";" << comilla <<Listado[i].getIdEstudiante()<<comilla<<";"<<comilla<<MejoresPromedios[j][2]<<comilla<<endl;
+            archivo.close();
+        }
+        }
+    }
+}
+void insertarMejorPromedio3(Personas Listado[],float MejoresPromedios[][2]){
+
+    ofstream archivo;
+    const char comilla = '"';
+    for (int i=0;i<15001;i++){
+        for (int j=0; j<100;j++){
+        if (MejoresPromedios[j][1]==Listado[i].getId()){
+            //escribir(Listado[i].getId(),Listado[i].getIdEstudiante(),Listado[i].getProMatematicas());
+            archivo.open("al/mejoresPromedios.csv",ios::out | ios::app);
+            archivo<<comilla << Listado[i].getId() << comilla << ";" << comilla <<Listado[i].getIdEstudiante()<<comilla<<";"<<comilla<<MejoresPromedios[j][2]<<comilla<<endl;
+            archivo.close();
+        }
+        }
+    }
+}
+void insertarMejorPromedio4(Personas Listado[],float MejoresPromedios[][2]){
+
+    ofstream archivo;
+    const char comilla = '"';
+    for (int i=0;i<15001;i++){
+        for (int j=0; j<100;j++){
+        if (MejoresPromedios[j][1]==Listado[i].getId()){
+            //escribir(Listado[i].getId(),Listado[i].getIdEstudiante(),Listado[i].getProMatematicas());
+            archivo.open("al/mejoresPromedios.csv",ios::out | ios::app);
+            archivo<<comilla << Listado[i].getId() << comilla << ";" << comilla <<Listado[i].getIdEstudiante()<<comilla<<";"<<comilla<<MejoresPromedios[j][2]<<comilla<<endl;
+            archivo.close();
+        }
+        }
+    }
+}
+*/
 bool comprobar(int id, int MejoresPromedios[]){
     bool aux=false;
     for(int i=1 ; i<301 ; i++){
@@ -184,6 +254,8 @@ void MejorArtistico(Personas Listado[], int MejoresPromedios[]){
         cout<<"mejores Estudiantes "<<i<<" "<<MejoresPromedios[i]<<endl;
     }
     
+    insertarMejorPromedio(Listado, mejores, "mejoresArtisticos");
+
 }
 
 void MejorHumanista(Personas Listado[], int MejoresPromedios[]){
@@ -223,6 +295,8 @@ void MejorHumanista(Personas Listado[], int MejoresPromedios[]){
     for(int i=0;i<300;i++){
         cout<<"mejores Estudiantes "<<i<<" "<<MejoresPromedios[i]<<endl;
     }
+    insertarMejorPromedio(Listado, mejores, "mejoresHumanistas");
+
 }
 
 void MejorTecnicos(Personas Listado[], int MejoresPromedios[]){
@@ -262,5 +336,7 @@ void MejorTecnicos(Personas Listado[], int MejoresPromedios[]){
     for(int i=0;i<400;i++){
         cout<<"mejores Estudiantes "<<i<<" "<<MejoresPromedios[i]<<endl;
     }
+    insertarMejorPromedio(Listado, mejores, "mejoresTecnicos");
+
 }
 
