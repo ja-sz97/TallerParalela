@@ -135,9 +135,7 @@ void MejorPromedio(Personas Listado[], int MejoresPromedios[]){
 }
 
 bool comprobar(int id, int MejoresPromedios[]){
-
     bool aux=false;
-
     for(int i=1 ; i<15001 ; i++){
         if(id == MejoresPromedios[i]){
             aux=true;
@@ -150,49 +148,33 @@ void MejorArtistico(Personas Listado[], int MejoresPromedios[]){
 
     float promArteEdFisica, mejores[100][2];
     int aux=0, indice;
-    /*
-    cout<<" "<<endl;
-    for(int i=0;i<100;i++){
-        cout<<"mejores Estudiantes "<<i<<" "<<MejoresPromedios[i]<<endl;
-    }
-    */
     bool encuentra;
     
     for(int i=1; i<15001 ; i++){
-            /*
-            if(Listado[i].getId() ==  MejoresPromedios[m]){
-                cout<< i <<" / "<<Listado[i].getId()<<" - "<< MejoresPromedios[m]<< " / " << flag <<endl;
-                flag++;
-            }
-            */
         encuentra = comprobar(Listado[i].getId(),MejoresPromedios);
-
-            if(!encuentra){
-                promArteEdFisica = (Listado[i].getPromArte() + Listado[i].getPromEdfisica())/2;
-                if(aux == 100){
-                    float menor = 7;
-                    for (int j = 0; j<100; j++){
-                        if ( menor > mejores[j][2]){       //guardado del menor promedio de la lista
-                            menor = mejores[j][2];
-                            indice = j;
-                        }
+        if(!encuentra){
+            promArteEdFisica = (Listado[i].getPromArte() + Listado[i].getPromEdfisica())/2;
+            if(aux == 100){
+                float menor = 7;
+                for (int j = 0; j<100; j++){
+                    if ( menor > mejores[j][2]){       //guardado del menor promedio de la lista
+                        menor = mejores[j][2];
+                        indice = j;
                     }
-                    if (menor < promArteEdFisica){
-                        mejores[indice][1] = Listado[i].getId();
-                        mejores[indice][2] = promArteEdFisica;
-                    }
-                }else{
-                    mejores[aux][1] = Listado[i].getId();
-                    mejores[aux][2] = promArteEdFisica;
-                    aux++;
                 }
+                if (menor < promArteEdFisica){
+                    mejores[indice][1] = Listado[i].getId();
+                    mejores[indice][2] = promArteEdFisica;
+                }
+            }else{
+                mejores[aux][1] = Listado[i].getId();
+                mejores[aux][2] = promArteEdFisica;
+                aux++;
             }
+        }
     }
 
     for (int x = 0 ; x<100 ; x++ ){
-    //    cout<< "Alumno " << mejores[x][1] << " " <<"Promedio:"<< mejores[x][2] <<endl;
-    //    cout << x << endl; 
-        //cout<<"mejores"<<" "<<mejores[x][1]<<endl;
         MejoresPromedios[x+100] = mejores[x][1];
     }
     
