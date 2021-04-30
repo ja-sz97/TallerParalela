@@ -97,6 +97,36 @@ void Personas::verDatos(){
     cout<<"Promedio Lenguaje: "<<promLenguaje<<endl;
 }
 
+void MejorPromedio1(Personas Listado[]){ 
+    float Mejores[100][2], promedio;
+    int indice, aux= 0;
+    for (int i = 1; i<15002; i++){ 
+        promedio = (Listado[i].getpromArte() + Listado[i].getpromCiencias() + Listado[i].getpromEdfisica() + Listado[i].getpromHistoria() + Listado[i].getpromIngles() + Listado[i].getpromLenguaje() + Listado[i].getproMatematicas() + Listado[i].getpromTecnologia())/8 ;
+        if(aux == 100){
+            int menor = 7;
+            for (int j = 0; j<100; j++){
+                if ( menor > Mejores[j][2]){       //guardado del menor promedio de la lista
+                    menor = Mejores[j][2];
+                    indice = j;
+                }
+            }
+            if (menor < promedio){
+                Mejores[indice][1] = Listado[i].getid();
+                Mejores[indice][2] = promedio;
+            }
+        } 
+        else{
+            Mejores[aux][1] = Listado[i].getid();
+            Mejores[aux][2] = promedio;
+            aux++;
+        }
+    }
+
+    for (int x = 0 ; x<100 ; x++ ){
+        cout<< "Alumno " << Mejores[x][1] << " " <<"Promedio:"<< Mejores[x][2] <<endl;
+        cout << x << endl; 
+    }
+}
 
 
 

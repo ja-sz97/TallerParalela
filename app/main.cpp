@@ -13,11 +13,13 @@ int main() {
     cout << "Hello, World!" <<endl;
     saludo();
     
-    Personas Listado[15100];
+    Personas Listado[15002];
     
     leerArchivo(Listado);
 
     Listado[1].verDatos();
+    
+    MejorPromedio1(Listado);
     
     return 0;
 }

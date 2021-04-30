@@ -25,11 +25,44 @@ class Personas{
 
         }
 
+        int getid(){
+            return id;
+        }
+        string getidEstudiante(){
+            return idEstudiante;
+        }
+        float getpromLenguaje(){
+            return promLenguaje;
+        }
+        float getpromIngles(){
+            return promIngles;
+        }
+        float getproMatematicas(){
+            return promMatematicas;
+        }
+        float getpromCiencias(){
+            return promCiencias;
+        }
+        float getpromHistoria(){
+            return promHistoria;
+        }
+        float getpromTecnologia(){
+            return promTecnologia;
+        }
+        float getpromArte(){
+            return promArte;
+        }
+        float getpromEdfisica(){
+            return promEdFisica;
+        }
+
         void verDatos();
 };
 
 typedef Personas Listado[15000];
 
 void leerArchivo(Personas Listado[]);
+
+void MejorPromedio1(Personas Listado[]);
 
 #endif //PERSONAS_H_INCLUDED
