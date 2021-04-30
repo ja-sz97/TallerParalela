@@ -1,7 +1,4 @@
 #include <iostream>
-#include <fstream>
-#include <sstream>
-#include <cstring>
 #include <string>
 #include <stdlib.h>
 #include "funciones.h"
@@ -9,17 +6,21 @@
 
 using namespace std;
 
+
 int main() {
-    cout << "Hello, World!" <<endl;
-    saludo();
     
+    //declaracion de variables globales
     Personas Listado[15002];
-    
+    int MejoresPromedios[300];
+
+
     leerArchivo(Listado);
 
-    Listado[1].verDatos();
+    //Listado[1].verDatos();
     
-    MejorPromedio1(Listado);
-    
+    MejorPromedio(Listado, MejoresPromedios);
+    MejorArtistico(Listado, MejoresPromedios);
+
+
     return 0;
 }

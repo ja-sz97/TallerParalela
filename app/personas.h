@@ -25,34 +25,34 @@ class Personas{
 
         }
 
-        int getid(){
+        int getId(){
             return id;
         }
-        string getidEstudiante(){
+        string getIdEstudiante(){
             return idEstudiante;
         }
-        float getpromLenguaje(){
+        float getPromLenguaje(){
             return promLenguaje;
         }
-        float getpromIngles(){
+        float getPromIngles(){
             return promIngles;
         }
-        float getproMatematicas(){
+        float getProMatematicas(){
             return promMatematicas;
         }
-        float getpromCiencias(){
+        float getPromCiencias(){
             return promCiencias;
         }
-        float getpromHistoria(){
+        float getPromHistoria(){
             return promHistoria;
         }
-        float getpromTecnologia(){
+        float getPromTecnologia(){
             return promTecnologia;
         }
-        float getpromArte(){
+        float getPromArte(){
             return promArte;
         }
-        float getpromEdfisica(){
+        float getPromEdfisica(){
             return promEdFisica;
         }
 
@@ -61,8 +61,10 @@ class Personas{
 
 typedef Personas Listado[15000];
 
-void leerArchivo(Personas Listado[]);
+typedef int MejoresPromedios[300];
 
-void MejorPromedio1(Personas Listado[]);
+void leerArchivo(Personas Listado[]);
+void MejorPromedio(Personas Listado[], MejoresPromedios);
+void MejorArtistico(Personas Listado[], MejoresPromedios);
 
 #endif //PERSONAS_H_INCLUDED
