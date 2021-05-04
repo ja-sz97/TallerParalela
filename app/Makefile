@@ -25,9 +25,10 @@ clean:
 	cp mejoresArtisticos.csv al/
 	cp mejoresHumanistas.csv al/
 	cp mejoresTecnicos.csv al/
+
 .PHONY: dist
 dist: clean main
 	#mkdir -p bin
 	#cp -r app bin/
 	#cp estudiantes.csv bin/
-	$(DEL) *.o mejoresPromedios.csv mejoresArtisticos.csv mejoresHumanistas.csv mejoresTecnicos.csv #app
+	$(DEL) *.o mejoresPromedios.csv mejoresArtisticos.csv mejoresHumanistas.csv mejoresTecnicos.csv

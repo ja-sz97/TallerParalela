@@ -18,7 +18,42 @@ string normalizar( string palabra){
     }
     return palabranueva;
 }
+/*
+* Funcion que ordena en relacion a las notas
+*/
+void OrdenarMayorMenor(float mejores[][2]){
+    float aux1, aux2;
+    for (int i = 0; i<100; i++){
+        for(int j = 0 ; j<99; j++){
+            if (mejores[j][2] < mejores[j+1][2]){
+                aux2 = mejores[j][2];
+                aux1 = mejores[j][1];
+                mejores[j][2] = mejores[j+1][2];
+                mejores[j][1] = mejores[j+1][1];
+                mejores[j+1][2] = aux2;
+                mejores[j+1][1] = aux1;
+                }
+        }
+    }
+    /*
+    for(int k = 0 ; k< 100 ; k++){  
+        cout<< mejores[k][1]<<"  " << mejores[k][2]<<endl;
+           }
+           */
+}
+/*
+* Funcion que muestra un elemento (el) que contiene ID de estudiante y su promedio segun sea el caso
+*/
+/*
+void mostrar(float el[][2]){
+    for (int i=0; i<100; i++){
+        cout << "Id alumno: " << el[i][1] << " Cn su nota: "<< el[i][2] << endl;
+    }
+*/
 
+/*
+* Funcion que lee el archivo .csv y que trabaja sobre este, asignando los valores a una clase
+*/
 void leerArchivo(Personas Listado[]){
     ifstream archivo;
     string linea,linea2;
@@ -26,9 +61,6 @@ void leerArchivo(Personas Listado[]){
     string id, idEstudiante, promLenguaje, promIngles, promMatematicas, promCiencias, promHistoria, promTecnologia, promArte, promEdFisica;
 
     archivo.open("estudiantes.csv", ios::in );
-
-    
-
         if(archivo.fail()){
             cout<<"error"<<endl;
             exit(1);
@@ -36,8 +68,7 @@ void leerArchivo(Personas Listado[]){
 
         while (!archivo.eof()){
             int i = 1;
-            
-
+        
             //getline(archivo,linea2);
             //cout<<linea2<<endl;
 
@@ -98,7 +129,28 @@ void Personas::verDatos(){
     cout<<"Promedio Lenguaje: "<<promLenguaje<<endl;
 }
 
-
+/*
+* Funcion que rellena los csv segun el nombre del archivo
+*/
+void insertarMejorPromedio(Personas Listado[],float MejoresPromedios[][2], string nombreArchivo){
+    //cout << "hola";
+    //OrdenarMayorMenor(MejoresPromedios);
+    ofstream archivo;
+    const char comilla = '"';
+    for (int i=0;i<100;i++){
+        for (int j=0; j<15001;j++){
+            if (MejoresPromedios[i][1]==Listado[j].getId()){
+                //escribir(Listado[i].getId(),Listado[i].getIdEstudiante(),Listado[i].getProMatematicas());
+                archivo.open("al/"+nombreArchivo+".csv",ios::out | ios::app);
+                archivo<<comilla << Listado[j].getId() << comilla << ";" << comilla <<Listado[j].getIdEstudiante()<<comilla<<";"<<comilla<<MejoresPromedios[i][2]<<comilla<<endl;
+                archivo.close();
+            }
+        }
+    }
+}
+/*
+* Funcion que selecciona a los estudiantes con el mejor promedio general
+*/
 void MejorPromedio(Personas Listado[], int MejoresPromedios[]){ 
     float mejores[100][2], promedio;
     int indice, aux= 0;
@@ -123,88 +175,24 @@ void MejorPromedio(Personas Listado[], int MejoresPromedios[]){
             aux++;
         }
     }
-
     for (int x = 0 ; x<100 ; x++ ){
-    //    cout<< "Alumno " << mejores[x][1] << " " <<"Promedio:"<< mejores[x][2] <<endl;
-    //    cout << x << endl; 
         MejoresPromedios[x] = mejores[x][1];
     }
-    
+    /*
     for(int i=0;i<100;i++){
         cout<<"mejores Estudiantes "<<i<<" "<<MejoresPromedios[i]<<endl;
+        //cout << "aaa" << endl;
     }
+    */
+
+    OrdenarMayorMenor(mejores); 
+
+
     insertarMejorPromedio(Listado, mejores, "mejoresPromedios");
 }
+
 /*
-void escribir(int valor1, string valor2, float valor3){
-
-    archivo[2].open("al/mejoresPromedios.csv", ios::out | ios::app);
-
-    archivo[2]<<comilla << valor1 << comilla << ";" << comilla <<valor2<<comilla<<";"<<comilla<<valor3<<comilla;
-    archivo[2].close();  
-}
-*/
-void insertarMejorPromedio(Personas Listado[],float MejoresPromedios[][2], string nombre){
-
-    ofstream archivo;
-    const char comilla = '"';
-    for (int i=0;i<15001;i++){
-        for (int j=0; j<100;j++){
-        if (MejoresPromedios[j][1]==Listado[i].getId()){
-            //escribir(Listado[i].getId(),Listado[i].getIdEstudiante(),Listado[i].getProMatematicas());
-            archivo.open("al/"+nombre+".csv",ios::out | ios::app);
-            archivo<<comilla << Listado[i].getId() << comilla << ";" << comilla <<Listado[i].getIdEstudiante()<<comilla<<";"<<comilla<<MejoresPromedios[j][2]<<comilla<<endl;
-            archivo.close();
-        }
-        }
-    }
-}
-/*
-void insertarMejorPromedio2(Personas Listado[],float MejoresPromedios[][2]){
-
-    ofstream archivo;
-    const char comilla = '"';
-    for (int i=0;i<15001;i++){
-        for (int j=0; j<100;j++){
-        if (MejoresPromedios[j][1]==Listado[i].getId()){
-            //escribir(Listado[i].getId(),Listado[i].getIdEstudiante(),Listado[i].getProMatematicas());
-            archivo.open("al/mejoresArtisticos.csv",ios::out | ios::app);
-            archivo<<comilla << Listado[i].getId() << comilla << ";" << comilla <<Listado[i].getIdEstudiante()<<comilla<<";"<<comilla<<MejoresPromedios[j][2]<<comilla<<endl;
-            archivo.close();
-        }
-        }
-    }
-}
-void insertarMejorPromedio3(Personas Listado[],float MejoresPromedios[][2]){
-
-    ofstream archivo;
-    const char comilla = '"';
-    for (int i=0;i<15001;i++){
-        for (int j=0; j<100;j++){
-        if (MejoresPromedios[j][1]==Listado[i].getId()){
-            //escribir(Listado[i].getId(),Listado[i].getIdEstudiante(),Listado[i].getProMatematicas());
-            archivo.open("al/mejoresPromedios.csv",ios::out | ios::app);
-            archivo<<comilla << Listado[i].getId() << comilla << ";" << comilla <<Listado[i].getIdEstudiante()<<comilla<<";"<<comilla<<MejoresPromedios[j][2]<<comilla<<endl;
-            archivo.close();
-        }
-        }
-    }
-}
-void insertarMejorPromedio4(Personas Listado[],float MejoresPromedios[][2]){
-
-    ofstream archivo;
-    const char comilla = '"';
-    for (int i=0;i<15001;i++){
-        for (int j=0; j<100;j++){
-        if (MejoresPromedios[j][1]==Listado[i].getId()){
-            //escribir(Listado[i].getId(),Listado[i].getIdEstudiante(),Listado[i].getProMatematicas());
-            archivo.open("al/mejoresPromedios.csv",ios::out | ios::app);
-            archivo<<comilla << Listado[i].getId() << comilla << ";" << comilla <<Listado[i].getIdEstudiante()<<comilla<<";"<<comilla<<MejoresPromedios[j][2]<<comilla<<endl;
-            archivo.close();
-        }
-        }
-    }
-}
+* Funcion que comprueba....
 */
 bool comprobar(int id, int MejoresPromedios[]){
     bool aux=false;
@@ -216,6 +204,9 @@ bool comprobar(int id, int MejoresPromedios[]){
     return aux;
 }
 
+/*
+* Funcion que selecciona a los mejores estudiantes artisticos
+*/
 void MejorArtistico(Personas Listado[], int MejoresPromedios[]){
 
     float promArteEdFisica, mejores[100][2];
@@ -250,14 +241,19 @@ void MejorArtistico(Personas Listado[], int MejoresPromedios[]){
         MejoresPromedios[x+100] = mejores[x][1];
     }
     
+   /*
     for(int i=0;i<200;i++){
         cout<<"mejores Estudiantes "<<i<<" "<<MejoresPromedios[i]<<endl;
     }
-    
+    */
+    OrdenarMayorMenor(mejores);
     insertarMejorPromedio(Listado, mejores, "mejoresArtisticos");
 
 }
 
+/*
+* Funcion que selecciona a los mejores estudiantes humanistas
+*/
 void MejorHumanista(Personas Listado[], int MejoresPromedios[]){
 
     float promLengHistoria, mejores[100][2];
@@ -291,14 +287,18 @@ void MejorHumanista(Personas Listado[], int MejoresPromedios[]){
     for (int x = 0 ; x<100 ; x++ ){
         MejoresPromedios[x+200] = mejores[x][1];
     }
-    
+    /*
     for(int i=0;i<300;i++){
         cout<<"mejores Estudiantes "<<i<<" "<<MejoresPromedios[i]<<endl;
     }
+    */
+    OrdenarMayorMenor(mejores);
     insertarMejorPromedio(Listado, mejores, "mejoresHumanistas");
 
 }
-
+/*
+* Funcion que selecciona a los mejores estudiantes tecnicos
+*/
 void MejorTecnicos(Personas Listado[], int MejoresPromedios[]){
 
     float promTecMat, mejores[100][2];
@@ -332,10 +332,12 @@ void MejorTecnicos(Personas Listado[], int MejoresPromedios[]){
     for (int x = 0 ; x<100 ; x++ ){
         MejoresPromedios[x+300] = mejores[x][1];
     }
-    
+    /*
     for(int i=0;i<400;i++){
         cout<<"mejores Estudiantes "<<i<<" "<<MejoresPromedios[i]<<endl;
     }
+    */
+    OrdenarMayorMenor(mejores);
     insertarMejorPromedio(Listado, mejores, "mejoresTecnicos");
 
 }
