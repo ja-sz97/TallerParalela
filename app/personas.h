@@ -68,5 +68,4 @@ void MejorPromedio(Personas Listado[], MejoresPromedios);
 void MejorArtistico(Personas Listado[], MejoresPromedios);
 void MejorHumanista(Personas Listado[], MejoresPromedios);
 void MejorTecnicos(Personas Listado[],MejoresPromedios);
-void insertarMejorPromedio(Personas Listado[], float mejores[][2], string nombre);
 #endif //PERSONAS_H_INCLUDED

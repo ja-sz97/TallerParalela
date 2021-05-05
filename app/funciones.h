@@ -1,14 +1,10 @@
-//
-// Created by javier on 28-04-21.
-//
+#ifndef FUNCIONES_H_INCLUDED
+#define FUNCIONES_H_INCLUDED
 
-#ifndef APP_FUNCIONES_H
-#define APP_FUNCIONES_H
+using namespace std;
 
-#include <iostream>
-
-void saludo();
-void leerArchivo();
-
+void OrdenarMayorMenor(float mejores[][2]);
+bool comprobar(int id, int MejoresPromedios[]);
+string normalizar(string palabra);
 
 #endif //APP_FUNCIONES_H

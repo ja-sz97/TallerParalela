@@ -12,7 +12,6 @@ int main() {
     //declaracion de variables globales
     Personas Listado[15001];
     int MejoresPromedios[400];
-    saludo();
 
     leerArchivo(Listado);
 

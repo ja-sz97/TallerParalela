@@ -5,55 +5,14 @@
 #include <stdlib.h>
 #include <string>
 #include "personas.h"
-#include <unistd.h>
+#include "funciones.h"
 
-string normalizar( string palabra){
-    char CaracterIndeseado[] = {'"'};
-    string palabranueva;
-    int aux = palabra.length();
-    for (int i = 0; i < aux ; i++){
-            if (palabra[i] != CaracterIndeseado[0]){
-                palabranueva += palabra[i];
-            }
-    }
-    return palabranueva;
-}
+
 /*
 * Funcion que ordena en relacion a las notas
 */
-void OrdenarMayorMenor(float mejores[][2]){
-    float aux1, aux2;
-    for (int i = 0; i<100; i++){
-        for(int j = 0 ; j<99; j++){
-            if (mejores[j][2] < mejores[j+1][2]){
-                aux2 = mejores[j][2];
-                aux1 = mejores[j][1];
-                mejores[j][2] = mejores[j+1][2];
-                mejores[j][1] = mejores[j+1][1];
-                mejores[j+1][2] = aux2;
-                mejores[j+1][1] = aux1;
-                }
-        }
-    }
-    /*
-    for(int k = 0 ; k< 100 ; k++){  
-        cout<< mejores[k][1]<<"  " << mejores[k][2]<<endl;
-           }
-           */
-}
-/*
-* Funcion que muestra un elemento (el) que contiene ID de estudiante y su promedio segun sea el caso
-*/
-/*
-void mostrar(float el[][2]){
-    for (int i=0; i<100; i++){
-        cout << "Id alumno: " << el[i][1] << " Cn su nota: "<< el[i][2] << endl;
-    }
-*/
 
-/*
-* Funcion que lee el archivo .csv y que trabaja sobre este, asignando los valores a una clase
-*/
+
 void leerArchivo(Personas Listado[]){
     ifstream archivo;
     string linea,linea2;
@@ -68,9 +27,6 @@ void leerArchivo(Personas Listado[]){
 
         while (!archivo.eof()){
             int i = 1;
-        
-            //getline(archivo,linea2);
-            //cout<<linea2<<endl;
 
             while(getline(archivo,linea)){
                 stringstream stream(linea);
@@ -122,7 +78,6 @@ void leerArchivo(Personas Listado[]){
         archivo.close();
 }
 
-
 void Personas::verDatos(){
     cout<<"id: "<<id<<endl;
     cout<<"idEstudiante: "<<idEstudiante<<endl;
@@ -133,14 +88,11 @@ void Personas::verDatos(){
 * Funcion que rellena los csv segun el nombre del archivo
 */
 void insertarMejorPromedio(Personas Listado[],float MejoresPromedios[][2], string nombreArchivo){
-    //cout << "hola";
-    //OrdenarMayorMenor(MejoresPromedios);
     ofstream archivo;
     const char comilla = '"';
     for (int i=0;i<100;i++){
         for (int j=0; j<15001;j++){
             if (MejoresPromedios[i][1]==Listado[j].getId()){
-                //escribir(Listado[i].getId(),Listado[i].getIdEstudiante(),Listado[i].getProMatematicas());
                 archivo.open("al/"+nombreArchivo+".csv",ios::out | ios::app);
                 archivo<<comilla << Listado[j].getId() << comilla << ";" << comilla <<Listado[j].getIdEstudiante()<<comilla<<";"<<comilla<<MejoresPromedios[i][2]<<comilla<<endl;
                 archivo.close();
@@ -191,18 +143,7 @@ void MejorPromedio(Personas Listado[], int MejoresPromedios[]){
     insertarMejorPromedio(Listado, mejores, "mejoresPromedios");
 }
 
-/*
-* Funcion que comprueba....
-*/
-bool comprobar(int id, int MejoresPromedios[]){
-    bool aux=false;
-    for(int i=1 ; i<301 ; i++){
-        if(id == MejoresPromedios[i]){
-            aux=true;
-        }
-    }
-    return aux;
-}
+
 
 /*
 * Funcion que selecciona a los mejores estudiantes artisticos
@@ -287,11 +228,6 @@ void MejorHumanista(Personas Listado[], int MejoresPromedios[]){
     for (int x = 0 ; x<100 ; x++ ){
         MejoresPromedios[x+200] = mejores[x][1];
     }
-    /*
-    for(int i=0;i<300;i++){
-        cout<<"mejores Estudiantes "<<i<<" "<<MejoresPromedios[i]<<endl;
-    }
-    */
     OrdenarMayorMenor(mejores);
     insertarMejorPromedio(Listado, mejores, "mejoresHumanistas");
 
@@ -308,7 +244,7 @@ void MejorTecnicos(Personas Listado[], int MejoresPromedios[]){
     for(int i=1; i<15001 ; i++){
         encuentra = comprobar(Listado[i].getId(),MejoresPromedios);
         if(!encuentra){
-            promTecMat= (Listado[i].getPromLenguaje() + Listado[i].getPromHistoria())/2;
+            promTecMat= (Listado[i].getProMatematicas() + Listado[i].getPromCiencias())/2;
             if(aux == 100){
                 float menor = 7;
                 for (int j = 0; j<100; j++){
@@ -332,13 +268,7 @@ void MejorTecnicos(Personas Listado[], int MejoresPromedios[]){
     for (int x = 0 ; x<100 ; x++ ){
         MejoresPromedios[x+300] = mejores[x][1];
     }
-    /*
-    for(int i=0;i<400;i++){
-        cout<<"mejores Estudiantes "<<i<<" "<<MejoresPromedios[i]<<endl;
-    }
-    */
     OrdenarMayorMenor(mejores);
     insertarMejorPromedio(Listado, mejores, "mejoresTecnicos");
 
 }
-
