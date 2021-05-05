@@ -7,5 +7,6 @@ using namespace std;
 void ordenarMayorMenor(float mejores[][2]);
 bool comprobar(int id, int MejoresPromedios[]);
 string normalizar(string palabra);
+void imprimirIntegrantes();
 
 #endif //APP_FUNCIONES_H

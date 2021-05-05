@@ -15,11 +15,14 @@ int main() {
     //Lectura de archivo estudiantes.csv y asignacion a su correspondiente clase Persona
     leerArchivo(Listado);
 
-    //LLamada a funciones para obtener los mejores promedios de cada estudiante según su criterio
+    //Llamada a funciones para obtener los mejores promedios de cada estudiante según su criterio
     MejorPromedio(Listado, MejoresPromedios);
     MejorArtistico(Listado, MejoresPromedios);
     MejorHumanista(Listado, MejoresPromedios);
     MejorTecnicos(Listado, MejoresPromedios);
+
+    //Llamada a funcion que imprime los integrantes
+    imprimirIntegrantes();
 
     return 0;
 }

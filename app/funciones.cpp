@@ -1,3 +1,4 @@
+#include <iostream>
 #include <stdlib.h>
 #include <string>
 #include "funciones.h"
@@ -61,4 +62,15 @@ bool comprobar(int id, int MejoresPromedios[]){
         }
     }
     return coincide;
+}
+
+
+void imprimirIntegrantes(){
+    cout<<endl;
+    cout<<" === Integrantes === "<<endl;
+    cout<<endl;
+    cout<<" - Leonardo Peña"<<endl;
+    cout<<" - Javier Saavedra"<<endl;
+    cout<<" - Esteban Moyano"<<endl;
+    cout<<endl;
 }
