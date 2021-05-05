@@ -3,7 +3,8 @@
 
 using namespace std;
 
-void OrdenarMayorMenor(float mejores[][2]);
+//Funciones complementarias para obtener los calculos en personas.cpp
+void ordenarMayorMenor(float mejores[][2]);
 bool comprobar(int id, int MejoresPromedios[]);
 string normalizar(string palabra);
 

@@ -1,17 +1,20 @@
-#ifndef PERSONAS_H_INCLUDED
-#define PERSONAS_H_INCLUDED
+#ifndef PERSONA_H_INCLUDED
+#define PERSONA_H_INCLUDED
 
 using namespace std;
 
-class Personas{
+// Clase Persona con la cual se manipulará la informacion de cada estudiante
+class Persona{
+
+    //Atributos
     private:
         int id;
         string idEstudiante;
         float promLenguaje, promIngles, promMatematicas, promCiencias, promHistoria, promTecnologia, promArte, promEdFisica;
 
+    //Metodos Getters y Setters
     public:
         void setAtributos(int _id, string _idEstudiante, float _promLenguaje, float _promIngles, float _promMatematicas, float _promCiencias, float _promHistoria, float _promTecnologia, float _promArte, float _promEdFisica){
-
             id = _id;
             idEstudiante = _idEstudiante;
             promLenguaje = _promLenguaje;
@@ -22,7 +25,6 @@ class Personas{
             promTecnologia = _promTecnologia;
             promArte = _promArte;
             promEdFisica = _promEdFisica;
-
         }
 
         int getId(){
@@ -55,17 +57,17 @@ class Personas{
         float getPromEdfisica(){
             return promEdFisica;
         }
-
-        void verDatos();
 };
 
-typedef Personas Listado[15000];
-
+//Typedef de las estructuras de datos globales
+typedef Persona Listado[15000];
 typedef int MejoresPromedios[400];
 
-void leerArchivo(Personas Listado[]);
-void MejorPromedio(Personas Listado[], MejoresPromedios);
-void MejorArtistico(Personas Listado[], MejoresPromedios);
-void MejorHumanista(Personas Listado[], MejoresPromedios);
-void MejorTecnicos(Personas Listado[],MejoresPromedios);
+//Funciones que utilizaran las estructuras de datos declaradas
+void leerArchivo(Persona Listado[]);
+void MejorPromedio(Persona Listado[], MejoresPromedios);
+void MejorArtistico(Persona Listado[], MejoresPromedios);
+void MejorHumanista(Persona Listado[], MejoresPromedios);
+void MejorTecnicos(Persona Listado[],MejoresPromedios);
+
 #endif //PERSONAS_H_INCLUDED

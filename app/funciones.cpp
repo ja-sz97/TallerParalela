@@ -1,30 +1,37 @@
 #include <stdlib.h>
 #include <string>
 #include "funciones.h"
-#include "personas.h"
+#include "persona.h"
 
 using namespace std;
 
-/*Función que normaliza las lineas del archivo para poder transformar las variables*/
-
-string normalizar( string palabra){
-    char CaracterIndeseado[] = {'"'};
+/*
+Función que retorna un string normalizado de las variables, removiendo caracteres no deseados
+*/
+string normalizar(string palabra){
+    
+    //Variables
+    char caracterIndeseado[] = {'"'};
     string palabranueva;
     int aux = palabra.length();
+
     for (int i = 0; i < aux ; i++){
-            if (palabra[i] != CaracterIndeseado[0]){
-                palabranueva += palabra[i];
-            }
+        if (palabra[i] != caracterIndeseado[0]){
+            palabranueva += palabra[i];
+        }
     }
     return palabranueva;
 }
 
-/*
-* Función que ordena en relacion a las notas
-*/
 
-void OrdenarMayorMenor(float mejores[][2]){
+/*
+Función que ordena los promedios de las notas de mayor a menor
+*/
+void ordenarMayorMenor(float mejores[][2]){
+    
+    //Variables
     float aux1, aux2;
+
     for (int i = 0; i<100; i++){
         for(int j = 0 ; j<99; j++){
             if (mejores[j][2] < mejores[j+1][2]){
@@ -34,18 +41,24 @@ void OrdenarMayorMenor(float mejores[][2]){
                 mejores[j][1] = mejores[j+1][1];
                 mejores[j+1][2] = aux2;
                 mejores[j+1][1] = aux1;
-                }
+            }
         }
     }
 }
 
-/* Comprobar si es que encuentra el id en el arreglo de mejores promedios para ignorarlo en los calculos */
+
+/* 
+Funcion que retorna true en el caso de que coinsida un id de un estudiante con uno ya asignado u operado, para ignorarlo en posteriores calculos
+*/
 bool comprobar(int id, int MejoresPromedios[]){
-    bool aux=false;
+    
+    //Variables
+    bool coincide=false;
+
     for(int i=1 ; i<301 ; i++){
         if(id == MejoresPromedios[i]){
-            aux=true;
+            coincide=true;
         }
     }
-    return aux;
+    return coincide;
 }
