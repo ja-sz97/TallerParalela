@@ -13,21 +13,22 @@ funciones.o: funciones.h funciones.cpp
 	$(CXX) $(CXXFLAGS) -c funciones.cpp
 
 clean:
-	$(DEL) *.o app
-	mkdir -p al	
-	touch mejoresPromedios.csv
-	touch mejoresArtisticos.csv
-	touch mejoresHumanistas.csv
-	touch mejoresTecnicos.csv
+	$(DEL) *.o app al
 
-	cp mejoresPromedios.csv al/
-	cp mejoresArtisticos.csv al/
-	cp mejoresHumanistas.csv al/
-	cp mejoresTecnicos.csv al/
+crear:
+	mkdir -p al	
+	touch al/mejoresPromedios.csv
+	touch al/mejoresArtisticos.csv
+	touch al/mejoresHumanistas.csv
+	touch al/mejoresTecnicos.csv
 
 .PHONY: dist
-dist: clean main
+dist: crear main
 	#mkdir -p bin
 	#cp -r app bin/
 	#cp estudiantes.csv bin/
-	$(DEL) *.o mejoresPromedios.csv mejoresArtisticos.csv mejoresHumanistas.csv mejoresTecnicos.csv
+	$(DEL) *.o
+.PHONY: limpiar
+limpiar: clean
+
+

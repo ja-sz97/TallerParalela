@@ -66,6 +66,8 @@ bool comprobar(int id, int MejoresPromedios[]){
 
 
 void imprimirIntegrantes(){
+    cout << endl;
+    cout << " === Hecho! === "<<endl;
     cout<<endl;
     cout<<" === Integrantes === "<<endl;
     cout<<endl;
