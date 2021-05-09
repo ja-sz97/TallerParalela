@@ -19,3 +19,8 @@ Escribiendo dichos promedios en su respectivo archivo .csv con el formato:
 
 + Identificador, Nombre generico del estudiante, Promedio calculado.
 
+
+Para ejecutar el programa:
+make dist
+Para limpiar:
+make limpiar
