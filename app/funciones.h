@@ -1,11 +1,12 @@
-//
-// Created by javier on 28-04-21.
-//
+#ifndef FUNCIONES_H_INCLUDED
+#define FUNCIONES_H_INCLUDED
 
-#ifndef APP_FUNCIONES_H
-#define APP_FUNCIONES_H
+using namespace std;
 
-#include <iostream>
+//Funciones complementarias para obtener los calculos en personas.cpp
+void ordenarMayorMenor(float mejores[][2]);
+bool comprobar(int id, int MejoresPromedios[]);
+string normalizar(string palabra);
+void imprimirIntegrantes();
 
-void saludo();
 #endif //APP_FUNCIONES_H
